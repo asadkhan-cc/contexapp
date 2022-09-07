@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useState } from "react";
+import CompA from "./Component/CompA";
+const lastName = createContext();
+const firstName = createContext();
 
 function App() {
+  const user = { name: "Asad", loggedIn: "trsdadsdsasaue" };
+  const [state, setState] = useState(user);
+  const setUser = (user) => {
+    setState((prevState) => user);
+  };
+
+  const user2 = { name: "Asad", loggedIn: "kmbjjh" };
+  const [userLastName, setUserLastName] = useState(user2);
+
+  const setlastName = (user) => {
+    setUserLastName((prevState) => user);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <firstName.Provider value={{ state, setUser }}>
+        <lastName.Provider value={{ userLastName, setlastName }}>
+          <CompA></CompA>
+        </lastName.Provider>
+      </firstName.Provider>
+    </>
   );
 }
 
 export default App;
+export { firstName, lastName };
